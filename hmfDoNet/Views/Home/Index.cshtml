@@ -1,0 +1,77 @@
+﻿
+@using hmfDoNet.Models;
+
+<link rel="stylesheet" href="~/Css/HomeCss/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Hind:400,600|Open+Sans:300,600" rel="stylesheet">
+<link rel="stylesheet" href="~/Css/HomeCss/dist/sortable.min.css">
+<script type="text/javascript" src="~/Css/HomeCss/dist/sortable.min.js"></script>
+
+
+<div class="htmleaf-container">
+
+    <main class="sortable">
+        <div class="container">
+            <div class="wrapper">
+
+                <ul class="sortable__nav nav">
+                    @if (ViewBag.selectList != null)
+                    {
+                        foreach (var selectItem in ViewBag.selectList)
+                        {
+                            <li>
+                                <a data-sjslink="@selectItem.Text" class="nav__link">
+                                    @selectItem.Text
+                                </a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+                @*<li>
+                        <a data-sjslink="flatty" class="nav__link">
+                            Flatty
+                        </a>
+                    </li>
+                    <li>
+                        <a data-sjslink="funny" class="nav__link">
+                            Funny
+                        </a>
+                    </li>*@
+
+
+                <div id="sortable" class="sjs-default">
+
+                    @if (ViewBag.cardsList != null)
+                    {
+                        foreach (Cards item in (List<Cards>)ViewBag.cardsList)
+                        {
+
+                            <div data-sjsel="@item.cardClassification">
+                                
+                                <a href="/details/index?id=@item.cardObjectId">
+                                    <div class="card">
+                                        <img class="card__picture" src="@item.cardImageData" alt="" />
+                                        <div class="card-infos">
+                                            <h2 class="card__title">@item.cardTitle</h2>
+                                            @*<p class="card__text">
+                                                @item.cardContent
+                                            </p>*@
+                                        </div>
+                                    </div>
+                                </a>
+                           
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+<script type="text/javascript">
+    document.querySelector('#sortable').sortablejs()
+</script>

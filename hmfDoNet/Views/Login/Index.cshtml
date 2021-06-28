@@ -1,0 +1,79 @@
+﻿@model hmfDoNet.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>登录</h2>
+
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    //加上防止跨站攻击
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.ActionLink("还没有账号？点击注册!", "Index", "Register")
+        </div>
+    </div>
+
+
+
+        
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <label class="text-danger">@ViewBag.Message</label>
+
+           
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" name="action" value="登录" class="btn btn-default" />
+            <a href="#" onclick='toLogin()'>
+                
+                <img  style="width: 76px;height: 24px;" src="~/images/bt_blue_76X24.png"/>
+                
+            </a>
+            @*<button onclick='toLogin()' type="button" src="" style="width: 76px;height: 24px;"></button>*@
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    function toLogin() {
+        //以下为按钮点击事件的逻辑。注意这里要重新打开窗口
+        //否则后面跳转到QQ登录，授权页面时会直接缩小当前浏览器的窗口，而不是打开新窗口
+        var A = window.open("https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101951641&redirect_uri=http://hmf666.vqyt.cn/qqlogin&state=1", "TencentLogin",
+            "width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+
+    }
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

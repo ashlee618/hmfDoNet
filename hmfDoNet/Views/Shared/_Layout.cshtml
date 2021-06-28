@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css'>
+
+
+    <script src="~/css/menucss/js/modernizr.js"></script> <!-- Modernizr -->
+    <script src="~/css/homecss/js/modernizr.js"></script> <!-- Modernizr -->
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <body>
+
+
+        <header class="cd-header">
+            @*<div id="cd-logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo"></a></div>*@
+
+
+                <nav class="cd-main-nav">
+                    <ul>
+                        <!-- inser more links here -->
+                        <li><a href="#0">Home</a></li>
+                        <li><a href="#0">About</a></li>
+                        <li>@Html.ActionLink("首页", "index", "home")</li>
+                        <li>@Html.ActionLink("搜索", "index", "SearchBar")</li>
+                        <li>@Html.ActionLink("立即创作","Create", "worksCenter")
+                        <li>
+                            @if (System.Web.HttpContext.Current.Session["userName"] != null)
+                            {
+                                <a href="#0">@System.Web.HttpContext.Current.Session["userName"]</a>
+                            }
+                            else
+                            { 
+                                @Html.ActionLink("登录", "index", "login")
+                            }
+
+                        </li>
+                    </ul>
+                </nav> <!-- cd-main-nav -->
+            </header>
+
+        <section id="cd-intro">
+            <div id="cd-intro-background"></div>
+            <div id="cd-intro-tagline">
+                <h1>Zoom-out Intro Effect</h1>
+            </div> <!-- cd-intro-tagline -->
+        </section> <!-- #cd-intro -->
+
+        <main class="cd-content">
+            <div class="cd-container">
+                @*<h2>This is the title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adip
+                    isicing elit. Inventore adipisci excepturi dolorum, quod libe
+                    ro distinctio vitae ea sint labore veritatis atque placeat, m
+                    inima, et ipsam, dolore earum a aut nesciunt?</p>*@
+                @RenderBody()
+            </div>
+        </main> <!-- cd-content -->
+        <script src="~/css/Menucss/js/jquery-1.11.0.min.js"></script>
+        <script src="~/css/Menucss/js/main.js"></script> <!-- Resource jQuery -->
+
+
+
+
+        <div class="container body-content ">
+
+            <hr />
+            <footer>
+                <p style="color:white;">&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+            </footer>
+        </div>
+
+
+        @RenderSection("scripts", required: false)
+
+    </body>
+</html>

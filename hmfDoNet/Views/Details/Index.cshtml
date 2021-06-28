@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" type="text/css" href="~/css/DetailsCss/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="~/css/DetailsCss/css/default.css">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    section {
+        padding: 5% 15%;
+        margin: 0 auto;
+    }
+</style>
+@*<img src="@ViewBag.card.cardImageData"/>*@
+<div class="img-holder"  data-image="@ViewBag.card.cardImageData" data-width="1600" data-height="900" data-extra-height="50"></div>
+
+<section>
+
+    <p>@ViewBag.card.cardContent</p>
+
+
+</section>
+
+
+
+
+<script src="~/css/DetailsCss/js/jquery.min.js"></script>
+<script src="~/css/DetailsCss/js/jquery.imageScroll.min.js"></script>
+<script>
+    $('.img-holder').imageScroll({
+        //            image: null,
+        //            imageAttribute: 'image',
+        //            container: $('body'),
+        //            windowObject: $(window),
+        //            speed:.2,
+        //            coverRatio:.75,
+        //            coverRatio:1,
+        //            holderClass: 'imageHolder',
+        //            imgClass: 'img-holder-img',
+        //            holderMinHeight: 200,
+        //            holderMaxHeight: null,
+        //            extraHeight: 50,
+        //            mediaWidth: 1600,
+        //            mediaHeight: 900,
+        //            parallax: true,
+        //            touch: false
+    });
+</script>
